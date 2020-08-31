@@ -1,0 +1,160 @@
+{% extends 'main.html' %} 
+{% load static%}
+ {% block title %} Add Product 
+{%endblock %} 
+
+
+{% block body %} 
+  <div class="my-2">
+                    <form  action="/update/{{products.id}}" method="post" >
+                      <input type="hidden" name="id" id="id" required value="{{products.id}}" />
+                      {% csrf_token %}
+                    
+                        <div class="form-group row">
+                          <label for="pd" class="col-sm-2 col-form-label font-weight-normal">Product Data -- </label>
+                          <div class="col-sm-3">
+                            <select name="vp" value="{{products.productData}}" placeholder="{{products.productData}}" class="custom-select mr-sm-2" id="vp">
+                                <option selected>{{products.productData}}</option>
+                                <option value="Variable product 1">Variable product 1</option>
+                                <option value="Variable product 2">Variable product 2</option>
+                                <option value="Variable product 3">Variable product 3</option>
+                              </select>
+                          </div>
+                       
+                        </div>
+                        <hr class="mx-0">
+                        <div class="form-group row">
+                            <label for="dfv" class="col-sm-2 col-form-label font-weight-normal">Default Form Values: </label>
+                            <div class="col-sm-2">
+                              <select name="dfv" value="{{products.dfv}}" class="custom-select mr-sm-2" id="dfv">
+                                  <option selected>{{products.dfv}}</option>
+                                  <option value="Black">Black</option>
+                                  <option value="White">White</option>
+                                  <option value="Green">Green</option>
+                                </select>
+                            </div>
+                          </div>
+                          <hr class="mx-0">
+                          <div class="form-group row">
+                            <div class="col-sm-6 mx-1">
+                              <select name="variation" value="{{products.variation}}" class="custom-select mr-sm-2" id="variation">
+                                  <option selected>{{products.variation}}</option>
+                                  <option value="Variation 1">Variation 1</option>
+                                  <option value=" Variation 2">Variation 2</option>
+                                  <option value="Variation 3">Variation 3</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-sm-5">
+                                <button class="btn btn-primary " disabled>Go</button>
+                                <small id="emailHelp" class="form-text text-muted font-italic text-right">2 Variations (<span class="text-primary">Expand</span> / <span class="text-primary">Close</span>)</small>
+                            </div>
+                          </div>
+                          <hr class="mx-0">
+
+                          <div class="form-group row">
+                            <label for="cls" class="col-sm-0 mx-2 col-form-label font-weight-normal">#41 </label>
+                            <div class="col-sm-2">
+                              <select name="cls" value="{{products.color}}" class="custom-select mr-sm-2" id="cls">
+                                  <option selected>{{products.color}}</option>
+                                  <option value="1">Black</option>
+                                  <option value="2">white</option>
+                                  <option value="3">Green</option>
+                                </select>
+                            </div>
+                          </div>
+                          <hr class="mx-0">
+                          <div class="form-group col-md-4">
+                            <label for="sku" class="font-weight-normal">SKU</label>
+                            <span class="text-right" data-toggle='tooltip' title='Something written ...'>?</span>
+                            <input type="text" name="sku" value="{{products.sku}}" class="form-control" id="sku">
+                          </div>
+                          <hr class="mx-0">
+                          <!-- ///////////////////// (checkbox)///////////////////////////  -->
+                          <div class="form-group row">
+                            <div class="col-sm-2">
+                              <div class="form-check">
+                                <input class="form-check-input chkcvalues" value="Enabled" type="checkbox" id="enb">
+                                <label class="form-check-label" for="enb">
+                                    <span class="text-right font-weight-normal" data-toggle='tooltip' title='Something written ...'>Enabled:</span>
+                                </label>
+                              </div>
+                            </div>                      
+                            <div class="col-sm-2">
+                              <div class="form-check">
+                                <input class="form-check-input chkcvalues" value="Downloadable" type="checkbox" id="db">
+                                <label class="form-check-label" for="db">
+                                    <span class="text-right font-weight-normal" data-toggle='tooltip' title='Something written ...'>Downloadable:</span>
+                                </label>
+                              </div>
+                            </div>                          
+                            <div class="col-sm-2">
+                              <div class="form-check">
+                                <input class="form-check-input chkcvalues" value="Virtual" type="checkbox" id="vr">
+                                <label class="form-check-label" for="vr">
+                                    <span class="text-right font-weight-normal" data-toggle='tooltip' title='Enable this option if a product is not shipped or there is no shipping cost'>Virtual:</span>
+                                </label>
+                              </div>
+                            </div>                 
+                            <div class="col-sm-2">
+                              <div class="form-check">
+                                <input class="form-check-input chkcvalues" value="Manage Stock" type="checkbox" id="ms">
+                                <label class="form-check-label" for="ms">
+                                    <span class="text-right font-weight-normal" data-toggle='tooltip' title='Something written ...'>Manage Stock?</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- ///////////////////////////////////////////////////////////  -->
+                          <input type="text" id="txtvalues" class="form-control" id="checkboxs" name="checkboxs" value="{{products.checks}}"  >
+                          <!-- //////////////////////////////////////////////////////////  -->
+                          <hr class="mx-0">
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="rp" class="font-weight-normal">Regular Price ($)</label>
+                              <input type="text" name="rp" value="{{products.price}}" class="form-control" id="rp" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="sch" class="font-weight-normal">($) Schedule</label>
+                                <input type="text" name="sch" value="{{products.schedule}}" class="form-control" id="sch">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="stock">Stock Status </label> <span class="text-right font-weight-normal" data-toggle='tooltip' title='Something written ...'>?</span>
+                            <select name="stock" value="{{products.stock}}" class="custom-select mr-sm-2" id="stock">
+                                <option selected>{{products.stock}}</option>
+                                <option value="In Stock">In Stock</option>
+                                <option value="Not In Stock">Not In Stock</option>
+                               
+                              </select>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-sm-10">
+                            <input id="btn" type="submit" class="btn btn-warning font-weight-normal" value="Update">
+                            
+                            </div>
+                          </div>
+
+                      </form>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %} 
+{%block script%}
+<script>
+  $(document).ready(function () {
+    $(".chkcvalues").click(function () {
+      var txt = "";
+      $(".chkcvalues:checked").each(function () {
+        txt += $(this).val() + ",";
+      });
+      $("#txtvalues").val(txt);
+    });
+  });
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+{%endblock%}

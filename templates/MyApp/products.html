@@ -1,0 +1,49 @@
+{% extends 'main.html' %} 
+{% load static%}
+ {% block title %} Add Product 
+{%endblock %} 
+
+
+{% block body %}
+<h1 class="text-center"> Products List</h1> 
+<div class="table-responsive">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      
+      <th scope="col">Product Data</th>
+      <th scope="col">Form Values</th>
+      <th scope="col">Variation</th>
+      <th scope="col">Color</th>
+      <th scope="col">SKU</th>
+      <th scope="col">CheckBox</th>
+      <th scope="col">Regular Price</th>
+      <th scope="col">Schdeule</th>
+      <th scope="col">Stocks</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in products  %}
+    <tr>
+      
+      <td>{{i.productData}}</td>
+      <td>{{i.dfv}}</td>
+      <td>{{i.variation}}</td>
+      <td>{{i.color}}</td>
+      <td>{{i.sku}}</td>
+      <td>{{i.checks}}</td>
+      <td>${{i.price}}</td>
+      <td>{{i.schedule}}</td>
+      <td>{{i.stock}}</td>
+      <td><a class="btn-sm btn-warning" href="/edit/{{i.id}}">E</a> 
+      <a  class="btn-sm btn-danger my-1" href="/delete/{{i.id}}">-</a>
+      </td>
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+</div>
+
+{% endblock %} 
